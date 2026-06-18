@@ -1,0 +1,22 @@
+p{font-size: 18px;font-family: "Noto Sans JP",sans-serif;
+   font-weight: bold;
+   font-style: italic;
+   text-align: center;
+   line-height: 1.8;
+   color:#333333;
+   background-color: #f0f4ff;
+}
+h1{
+    font: size 32px;
+    font-weight:bold;
+    text-align: center;
+    color:steelblue;
+    border-width:2px ;
+    border-bottom: 3px soild #7c3aed;
+
+}
+body{
+    background-color:#e8f4ff;
+    border:1px solid #aaa;
+    border-radius:8px;
+}

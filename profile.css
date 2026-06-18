@@ -1,0 +1,121 @@
+div{ 
+    border:2px solid #333;
+    border-radius: 18px;
+}
+.tag{text-align:center;
+     font-size: 20px;
+   font-family: "Noto Sans JP", sans-serif;
+    
+    height: 70px;
+    background-color: #3498db; 
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px auto;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* 滑らかな変化 */
+}
+.taghovor{background-color: #2980b9; 
+    transform: translateY(-5px);}
+
+h1{
+    text-align: center;
+    background-color:#53FF97;
+    border-radius: 18px;
+}
+.tital{
+    animation: profileAnime 2s infinite;
+}
+
+@keyframes profileAnime{
+
+    0%{
+        transform: scale(1);
+        color:black;
+    }
+
+    50%{
+        transform: scale(1.1);
+        color:#00aa66;
+        text-shadow: 0 0 20px #00ff99;
+    }
+
+    100%{
+        transform: scale(1);
+        color:black;
+    }
+}
+h2{
+    text-align: center;
+    font-size: 30px;
+    border-bottom :5px solid #44FFCC; 
+    border-radius: 20px;
+}
+
+.bio{
+     padding: 1px;
+    
+     
+}
+
+.bio{background-color: aqua;}
+.bio:hover{transition-duration:0.5 ;}
+.btn {
+    width: 120px;
+    height: 80px;
+    background-color: #85f2cc; /* サンゴ色 */
+    margin: 20px auto;
+    border-radius: 8px;
+    opacity: 0; /* 初期状態は透明 */
+    transform: translateX(-100px); /* 初期状態は左にオフセット */
+
+    /* animationプロパティ: [名前] [時間] [タイミング関数] [遅延] [繰り返し回数] [再生方向] [終了状態] */
+    animation: fadeInSlide 2s ease-out forwards;
+}
+
+/* @keyframesルールで 'fadeInSlide' アニメーションを定義 */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0; /* 開始時は完全に透明 */
+        transform: translateX(-100px); /* 左外から開始 */
+    }
+    50% {
+        opacity: 1; /* 中間点で完全に不透明 */
+        transform: translateX(20px); /* 少し右に飛び出す */
+    }
+    100% {
+        opacity: 1; /* 終了時は完全に不透明 */
+        transform: translateX(0); /* 最終位置（元に戻る） */
+    }
+}
+
+body {
+    
+    height: 80px;
+    background-color: #f2f4f3; /* サンゴ色 */
+    margin: 20px auto;
+    border-radius: 8px;
+    opacity: 0; /* 初期状態は透明 */
+    transform: translateX(-100px); /* 初期状態は左にオフセット */
+
+    /* animationプロパティ: [名前] [時間] [タイミング関数] [遅延] [繰り返し回数] [再生方向] [終了状態] */
+    animation: fadeInSlide 2s ease-out forwards;
+}
+
+/* @keyframesルールで 'fadeInSlide' アニメーションを定義 */
+@keyframes fadeInSlide {
+    0% {
+        opacity: 0; /* 開始時は完全に透明 */
+        transform: translateX(-100px); /* 左外から開始 */
+    }
+    50% {
+        opacity: 1; /* 中間点で完全に不透明 */
+        transform: translateX(20px); /* 少し右に飛び出す */
+    }
+    100% {
+        opacity: 1; /* 終了時は完全に不透明 */
+        transform: translateX(0); /* 最終位置（元に戻る） */
+    }
+}

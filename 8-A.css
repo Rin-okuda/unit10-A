@@ -1,0 +1,48 @@
+#container{
+    display:grid;
+
+    grid-template-columns: 1fr 1fr ;
+    
+
+    grid-template-areas:
+        "header header "
+        "main relece"
+	     "topics topics ";
+
+    gap:10px;
+}
+
+
+
+
+#itemA {
+	grid-area:header;
+    min-height:100px;
+	background: #f88;
+}
+#itemB {
+	grid-area:main;
+	 min-height:150px;
+	background: #8f8;
+}
+#itemC {
+	grid-area:relece;
+	 min-height:150px;
+	background: #88f;
+}
+#itemD {grid-area:topics;
+	 min-height:100px;
+	background: #88f;
+}
+@media screen and (max-width:750px){
+
+    #container{
+        grid-template-columns:1fr;
+
+        grid-template-areas:
+            "header"
+            "main"
+            "relece"
+            "topics";
+    }
+}

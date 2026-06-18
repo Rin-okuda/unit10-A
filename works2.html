@@ -1,0 +1,524 @@
+# Repair Universe - 左右回転アニメーション演出
+
+```html
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repair Universe Rotation Prototype</title>
+
+<style>
+
+body{
+    margin:0;
+    overflow:hidden;
+    background:#000;
+    font-family:sans-serif;
+}
+
+.scene{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at center,
+    #141022 0%,
+    #07070c 60%,
+    #000 100%);
+}
+
+/* =====================================
+   STAR BACKGROUND
+===================================== */
+
+.stars{
+    position:absolute;
+    inset:0;
+
+    background-image:
+    radial-gradient(#ffffff 1px, transparent 1px),
+    radial-gradient(#aa44ff 1px, transparent 1px);
+
+    background-size:
+    140px 140px,
+    260px 260px;
+
+    opacity:.25;
+
+    animation:starScroll 120s linear infinite;
+}
+
+@keyframes starScroll{
+
+    from{
+        transform:translateX(0px);
+    }
+
+    to{
+        transform:translateX(-1200px);
+    }
+
+}
+
+/* =====================================
+   CAMERA ROTATION AREA
+===================================== */
+
+.rotation-container{
+    position:absolute;
+
+    left:50%;
+    top:52%;
+
+    width:1000px;
+    height:600px;
+
+    transform-style:preserve-3d;
+
+    transform:
+    translate(-50%,-50%)
+    rotateY(0deg);
+
+    animation:rotateScene 12s ease-in-out infinite alternate;
+}
+
+@keyframes rotateScene{
+
+    0%{
+        transform:
+        translate(-50%,-50%)
+        rotateY(-22deg);
+    }
+
+    50%{
+        transform:
+        translate(-50%,-50%)
+        rotateY(0deg);
+    }
+
+    100%{
+        transform:
+        translate(-50%,-50%)
+        rotateY(22deg);
+    }
+
+}
+
+/* =====================================
+   BLOCKS
+===================================== */
+
+.block{
+    position:absolute;
+
+    width:80px;
+    height:80px;
+
+    background:
+    linear-gradient(135deg,
+    #54423a,
+    #2d231e);
+
+    border:
+    2px solid #111;
+
+    box-shadow:
+    inset 0 0 8px rgba(255,255,255,.08);
+}
+
+/* =====================================
+   CRYSTALS
+===================================== */
+
+.crystal{
+    position:absolute;
+
+    width:34px;
+    height:50px;
+
+    clip-path:polygon(
+    50% 0%,
+    100% 40%,
+    70% 100%,
+    30% 100%,
+    0% 40%
+    );
+
+    animation:crystalGlow 2s infinite alternate;
+}
+
+.red{
+    background:#ff3c3c;
+    box-shadow:0 0 16px #ff4444;
+}
+
+.yellow{
+    background:#ffd54d;
+    box-shadow:0 0 16px #ffcc44;
+}
+
+.blue{
+    background:#55aaff;
+    box-shadow:0 0 16px #55aaff;
+}
+
+.purple{
+    background:#b455ff;
+    box-shadow:0 0 16px #b455ff;
+}
+
+@keyframes crystalGlow{
+
+    from{
+        transform:scale(1);
+        opacity:.7;
+    }
+
+    to{
+        transform:scale(1.12);
+        opacity:1;
+    }
+
+}
+
+/* =====================================
+   PLAYER
+===================================== */
+
+.player{
+    position:absolute;
+
+    left:420px;
+    top:250px;
+
+    width:120px;
+    height:160px;
+
+    z-index:20;
+
+    animation:idle 1.2s ease-in-out infinite;
+}
+
+@keyframes idle{
+
+    0%,100%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-4px);
+    }
+
+}
+
+.head{
+    position:absolute;
+
+    width:50px;
+    height:50px;
+
+    left:34px;
+    top:0;
+
+    border-radius:50%;
+
+    background:#151515;
+}
+
+.body{
+    position:absolute;
+
+    width:70px;
+    height:90px;
+
+    left:24px;
+    top:46px;
+
+    border-radius:16px;
+
+    background:#d8d8e2;
+}
+
+.arm{
+    position:absolute;
+
+    width:12px;
+    height:70px;
+
+    background:#111;
+
+    left:10px;
+    top:56px;
+
+    transform-origin:top center;
+
+    animation:mining 1.1s infinite;
+}
+
+@keyframes mining{
+
+    0%{
+        transform:rotate(20deg);
+    }
+
+    50%{
+        transform:rotate(-60deg);
+    }
+
+    100%{
+        transform:rotate(20deg);
+    }
+
+}
+
+.pickaxe{
+    position:absolute;
+
+    width:80px;
+    height:10px;
+
+    background:#7b5a2d;
+
+    top:20px;
+    left:-10px;
+
+    border-radius:10px;
+}
+
+.pickaxe::before{
+    content:"";
+
+    position:absolute;
+
+    width:38px;
+    height:24px;
+
+    left:-20px;
+    top:-7px;
+
+    background:#ffd54d;
+
+    clip-path:polygon(0% 100%,100% 0%,100% 100%);
+}
+
+/* =====================================
+   IMPACT
+===================================== */
+
+.impact{
+    position:absolute;
+
+    left:520px;
+    top:350px;
+
+    width:16px;
+    height:16px;
+
+    border-radius:50%;
+
+    background:#ff9933;
+
+    box-shadow:0 0 25px #ff9933;
+
+    animation:impactAnim 1.1s infinite;
+}
+
+@keyframes impactAnim{
+
+    0%,100%{
+        opacity:0;
+        transform:scale(0);
+    }
+
+    50%{
+        opacity:1;
+        transform:scale(2.5);
+    }
+
+}
+
+/* =====================================
+   UI
+===================================== */
+
+.ui-box{
+    position:absolute;
+
+    background:rgba(0,0,0,.65);
+
+    border:1px solid rgba(180,100,255,.4);
+
+    border-radius:18px;
+
+    backdrop-filter:blur(6px);
+
+    color:white;
+}
+
+.status{
+    left:20px;
+    top:20px;
+
+    width:250px;
+
+    padding:18px;
+}
+
+.quest{
+    right:20px;
+    top:30px;
+
+    width:260px;
+
+    padding:18px;
+}
+
+.inventory{
+    position:absolute;
+
+    left:50%;
+    bottom:20px;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    gap:12px;
+}
+
+.slot{
+    width:68px;
+    height:68px;
+
+    border-radius:14px;
+
+    border:2px solid rgba(180,100,255,.35);
+
+    background:rgba(0,0,0,.55);
+}
+
+.rotate-ui{
+    position:absolute;
+
+    top:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    color:#b455ff;
+
+    font-size:34px;
+
+    text-shadow:0 0 12px #b455ff;
+}
+
+</style>
+</head>
+<body>
+
+<div class="scene">
+
+<div class="stars"></div>
+
+<div class="rotate-ui">
+ALT + マウスドラッグ 回転
+</div>
+
+<div class="rotation-container">
+
+<div class="block" style="left:180px;top:340px"></div>
+<div class="block" style="left:260px;top:340px"></div>
+<div class="block" style="left:340px;top:340px"></div>
+<div class="block" style="left:420px;top:340px"></div>
+<div class="block" style="left:500px;top:340px"></div>
+<div class="block" style="left:580px;top:340px"></div>
+<div class="block" style="left:660px;top:340px"></div>
+
+<div class="block" style="left:260px;top:260px"></div>
+<div class="block" style="left:340px;top:260px"></div>
+<div class="block" style="left:420px;top:260px"></div>
+<div class="block" style="left:500px;top:260px"></div>
+
+<div class="block" style="left:340px;top:180px"></div>
+<div class="block" style="left:420px;top:180px"></div>
+
+<div class="crystal red" style="left:510px;top:310px"></div>
+<div class="crystal yellow" style="left:420px;top:150px"></div>
+<div class="crystal blue" style="left:320px;top:300px"></div>
+<div class="crystal purple" style="left:640px;top:290px"></div>
+
+<div class="player">
+<div class="head"></div>
+<div class="body"></div>
+<div class="arm">
+<div class="pickaxe"></div>
+</div>
+</div>
+
+<div class="impact"></div>
+
+</div>
+
+<div class="ui-box status">
+
+<div style="font-size:28px;margin-bottom:12px;">
+黒瀬 遠 Lv.23
+</div>
+
+HP 268 / 268
+<br><br>
+SP 152 / 152
+
+</div>
+
+<div class="ui-box quest">
+
+クエスト
+<br><br>
+元素鉱石を集める
+
+</div>
+
+<div class="inventory">
+<div class="slot"></div>
+<div class="slot"></div>
+<div class="slot"></div>
+<div class="slot"></div>
+<div class="slot"></div>
+<div class="slot"></div>
+</div>
+
+</div>
+
+</body>
+</html>
+```
+
+---
+
+# このプロトタイプで動く内容
+
+* 左右回転（Maya風）
+* 採掘モーション
+* ツルハシ振り
+* 鉱石発光
+* ヒットエフェクト
+* 背景スクロール
+* SF UI表示
+* 奥行き付きステージ
+
+---
+
+# 今後追加できるもの
+
+* マウスドラッグで自由回転
+* キャラ移動
+* ジャンプ
+* ダッシュ
+* 採掘破壊
+* チャクラム攻撃
+* ブラックホール演出
+* ボス戦
+* Unity移植
